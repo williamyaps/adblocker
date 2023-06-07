@@ -32,10 +32,6 @@
 ! To counter `2mdn.net` in Peter Lowe's
 @@||s0.2mdn.net/instream/*$domain=cnet.com
 
-! https://twitter.com/ethanveres/status/527122036649639936
-! Fortunately, further connections to `mxpnl.com` are blocked
-@@||cdn.vurb.com/*/mixpanel.
-
 ! Chrome store feedback
 ! To counter `top.mail.ru` in Peter Lowe's
 ! [badfilter] ||top.mail.ru^$badfilter
@@ -1651,11 +1647,15 @@ pcgamer.com#@#.hawk-widget
 
 ! broken videos on reuters.com
 ! https://github.com/uBlockOrigin/uAssets/issues/8447#issuecomment-1077703228
+! https://github.com/uBlockOrigin/uAssets/issues/8447#issuecomment-1579287955
 @@||reutersmedia.net/*/js/rcom-scroll-tracker.js$script,domain=reuters.com
 @@||cdn.permutive.com^$script,domain=reuters.com
 @@||api.permutive.com/*/batch/$xhr,domain=reuters.com
+@@||api.permutive.com/v2.0/*$xhr,domain=reuters.com
 @@||googletagmanager.com/gtm.js$script,domain=reuters.com
 @@||imasdk.googleapis.com/js/sdkloader/ima3_debug.js$script,domain=reuters.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/152828
+@@||pixel.adsafeprotected.com/services/pub$xhr,domain=reuters.com
 
 ! https://github.com/uBlockOrigin/uAssets/issues/6601
 @@||cdn.mxpnl.com/libs/mixpanel-*-latest.min.js$script,domain=groupme.com
@@ -2419,6 +2419,7 @@ saltspringexchange.com#@#.single-ad
 @@||ezodn.com/cmp/v2/cmp.js$script
 @@||gvl.ezodn.com/gvlcache/GVL.json$xhr
 @@||ezodn.com/v2/cmp.js$script
+###ez-sidebar-wall-left
 
 ! https://forums.lanik.us/viewtopic.php?p=155897#p155897
 @@||xozilla.com^$cname
@@ -3725,7 +3726,9 @@ docer.pl#@#[class^="ad-"]
 @@||ad.doubleclick.net/ddm/trackclk/*https://www.unieuro.it
 
 ! https://github.com/uBlockOrigin/uAssets/issues/12503
-@@||outbrain.com^$script,domain=welt.de
+@@||widgets.outbrain.com/outbrain.js$script,domain=welt.de
+@@||mv.outbrain.com/Multivac/api/get?url=$script,domain=welt.de
+@@||images.outbrainimg.com/transform/v3/$image,domain=welt.de
 
 ! https://pc-play.games.dmm.com/play/oshirore/ campaign banner (need login)
 ! The blocking exception can be removed after Apr. 5, but maybe cosmetic should be kept for future.
@@ -4002,8 +4005,8 @@ thequint.com##span:has-text(ADVERTISEMENT)
 ! https://github.com/uBlockOrigin/uAssets/issues/14118
 ! [badfilter] ||da-services.ch^$3p,badfilter
 
-! privacy settings broken on ebay-kleinanzeigen.de/gdpr
-@@||googletagmanager.com/gtm.js$script,redirect-rule=googletagmanager_gtm.js:5,domain=ebay-kleinanzeigen.de
+! privacy settings broken on kleinanzeigen.de/gdpr
+@@||googletagmanager.com/gtm.js$script,redirect-rule=googletagmanager_gtm.js:5,domain=kleinanzeigen.de
 
 ! https://github.com/uBlockOrigin/uAssets/issues/14141
 ! https://github.com/uBlockOrigin/uAssets/issues/14150
@@ -4363,7 +4366,7 @@ filelu.com#@#.banner_ads
 @@||discover.com/*/AppMeasurement.min.js$script,1p
 
 ! https://github.com/uBlockOrigin/uAssets/issues/16128
-@@||img.ebay-kleinanzeigen.de/api/$image,1p
+@@||img.kleinanzeigen.de/api/$image,1p
 
 ! https://github.com/uBlockOrigin/uAssets/issues/12112#issuecomment-1366134900
 *$script,3p,from=uqload.com,badfilter
@@ -4702,10 +4705,6 @@ thaiairways.com##+js(set, dcsMultiTrack, noopFunc)
 thaiairways.com##+js(set, urlStrArray, noopFunc)
 ||thaiairways.com/static/common/js/wt_js/webtrends.min.js$script,1p,important
 
-! https://www.reddit.com/r/uBlockOrigin/comments/12k9jjp/
-! [badfilter] ||educationdynamics.com^$badfilter
-||widget.educationdynamics.com^
-
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148109
 @@||sf.ezoiccdn.com/ezoimgfmt/$image,domain=kosmofoto.com
 @@||sf.ezoiccdn.com/ezossp/https/kosmofoto.com/_static/$script,domain=kosmofoto.com
@@ -4908,3 +4907,41 @@ tieba.baidu.com##+js(set, passFingerPrint, noopFunc)
 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151774
 @@||analytics-*.clickdimensions.com/*/pages/$frame,domain=crm.digital.nhs.uk
+
+! https://github.com/uBlockOrigin/uAssets/issues/16440
+@@||h-microsoft.online-metrix.net^$xhr,domain=ave9858.github.io|massgrave.dev
+
+! https://github.com/uBlockOrigin/uAssets/issues/17621#issuecomment-1567160350
+sofascore.com#@#[display^="block,none"]
+sofascore.com#@#[display^="none,none"]
+sofascore.com##.adUnitBox
+
+! https://github.com/uBlockOrigin/uAssets/issues/18322
+! too broad
+! [badfilter] /mixpanel.$domain=~mixpanel.com,badfilter
+
+! https://linktr.ee/admin/settings breakage
+linktr.ee##+js(set, DD_LOGS, noopFunc)
+
+! https://github.com/uBlockOrigin/uAssets/issues/18336
+! [badfilter] /webTracking.$domain=~webtracking.girard-agediss.com,badfilter
+/webtracking.min.js
+||qualzz.com/assets/trackingScript/webtracking.js
+||webtracking.fe.union-investment.de^
+
+! https://github.com/uBlockOrigin/uAssets/issues/9764
+@@||imasdk.googleapis.com/pal/sdkloader/pal.js$script,domain=pluto.tv
+
+! https://github.com/uBlockOrigin/uAssets/issues/18345
+metastats.net##.col-md-6:style(height: 150px !important;)
+metastats.net###page-wrapper > div.row:nth-of-type(1)
+
+! https://github.com/uBlockOrigin/uAssets/issues/18357
+@@||4chan.org/adv/$image,domain=boards.4channel.org
+
+! https://github.com/uBlockOrigin/uAssets/issues/18296
+! To counter `siteintercept.qualtrics.com` in PL list
+! [badfilter] ||siteintercept.qualtrics.com^$badfilter
+
+! https://github.com/uBlockOrigin/uAssets/issues/18410
+*$script,domain=abcya.com,redirect-rule=noopjs

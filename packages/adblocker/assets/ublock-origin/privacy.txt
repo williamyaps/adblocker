@@ -541,15 +541,42 @@ zhihu.com##+js(no-xhr-if, log-sdk.ksapisrv.com/rest/wd/common/log/collect method
 ||ketekbisokaliau.com^
 ||sarang77skuy.com^
 ||smartaccess.biz^
+||adonsonlyd.xyz^
 
 ! https://www.reddit.com/r/uBlockOrigin/comments/12vx18z/
 ||top-staging.mail.ru^
 
 ! https://github.com/uBlockOrigin/uAssets/issues/17786
-||adthrive.com^$removeparam
+||adthrive.com^$removeparam,domain=~mediaite.com
 
 ! onesignal-sites
-||onesignal.com^$domain=iphoneincanada.ca
+||onesignal.com^$domain=androidauthority.com|iphoneincanada.ca|senpa.io
+
+! geoip.cdn.arkadiumhosted.com
+||geoip.cdn.arkadiumhosted.com^$domain=bestforpuzzles.com|charlotteobserver.com|independent.co.uk
+
+! https://github.com/uBlockOrigin/uBlock-issues/issues/2531#issuecomment-1512373333
+!#if ext_devbuild
+mozilla.org##+js(href-sanitizer, a[href^="https://app.adjust.com/"][href*="?redirect="], ?redirect)
+!#endif
+
+! sites with beacons
+*$ping,domain=webnovel.com
+
+! https://github.com/uBlockOrigin/uAssets/issues/17652
+*$xhr,3p,denyallow=github.com|stripe.com|fpjs.pro,domain=fingerprint.com|~dev.fingerprint.com
+||fingerprint.com^$strict3p,domain=fingerprint.com|~dev.fingerprint.com|~dashboard.fingerprint.com
+||dashboard.fingerprint.com^$strict3p,xhr,domain=dashboard.fingerprint.com
+fingerprint.com,~dev.fingerprint.com##+js(no-xhr-if, method:POST)
+
+! https://www.androidauthority.com/third-party-reddit-apps-statement-3332238/ redirect links
+androidauthority.com##+js(href-sanitizer, a[href^="https://androidauth.wpengine.com/wp-json/api/advanced_redirect?ref="], ?ref)
+||androidauthority.com/api/locate/
+
+! lightboxcdn.com
+||lightboxcdn.com^$domain=androidauthority.com
+||lightboxcdn.com/*/digibox.gif?
+||lightboxcdn.com/*/jsonp/z?
 
 ! Merge in resource-abuse.txt
 !#include resource-abuse.txt
